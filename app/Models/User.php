@@ -55,6 +55,18 @@ final class User extends Authenticatable
         return $this->workspaces->contains(fn ($t): bool => $t->id === $workspace->id);
     }
 
+    /** @return HasMany<Ticket, $this> */
+    public function createdTickets(): HasMany
+    {
+        return $this->hasMany(Ticket::class, 'author_id');
+    }
+
+    /** @return HasMany<Ticket, $this> */
+    public function assignedTickets(): HasMany
+    {
+        return $this->hasMany(Ticket::class, 'assigned_to');
+    }
+
     public function canAccessDashboard(): bool
     {
         return true;
