@@ -14,6 +14,9 @@
 
         <flux:menu.separator />
 
-        <flux:menu.item icon="arrow-right-start-on-rectangle">Logout</flux:menu.item>
+        <form action="{{ route('logout') }}" method="post">
+            @csrf
+            <flux:menu.item type="submit" icon="arrow-right-start-on-rectangle" class="cursor-pointer">Logout</flux:menu.item>
+        </form>
     </flux:menu>
 </flux:dropdown>

@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\AuthenticatedSessionController;
 use App\Livewire\Dashboard\Ticket\ListTickets;
 use App\Livewire\Dashboard\Workspace\CreateWorkspace;
 use Illuminate\Support\Facades\Route;
@@ -21,3 +22,5 @@ Route::domain(config('app.domain'))->prefix('dashboard')->as('dashboard.')->grou
         Route::get('/workspace/new', CreateWorkspace::class)->name('workspaces.create');
     });
 });
+
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
