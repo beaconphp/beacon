@@ -1,6 +1,6 @@
 <x-layouts.base :title="$title">
     <x-slot:body class="min-h-screen">
-        <flux:sidebar sticky collapsible="mobile" class="bg-zinc-50 dark:bg-zinc-900 border-r border-zinc-200 dark:border-zinc-700">
+        <flux:sidebar sticky collapsible="mobile">
             <div>
                 <livewire:dashboard.workspace-selector/>
 
@@ -39,6 +39,10 @@
             </flux:dropdown>
         </flux:header>
 
-        <flux:main>{{ $slot }}</flux:main>
+        <flux:main class="m-2 bg-zinc-50 dark:bg-zinc-900 border rounded-lg border-zinc-200 dark:border-zinc-700">
+            <flux:container>
+                {{ $slot }}
+            </flux:container>
+        </flux:main>
     </x-slot:body>
 </x-layouts.base>
