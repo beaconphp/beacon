@@ -11,6 +11,17 @@
         "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
         "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
         "Noto Color Emoji";
+    --color-accent: var(--color-pink-600);
+    --color-accent-content: var(--color-pink-600);
+    --color-accent-foreground: var(--color-white);
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+@layer theme {
+    .dark {
+        --color-accent: var(--color-pink-600);
+        --color-accent-content: var(--color-pink-400);
+        --color-accent-foreground: var(--color-white);
+    }
+}
