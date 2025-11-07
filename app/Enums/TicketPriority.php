@@ -10,6 +10,7 @@ enum TicketPriority: string
     case LOW = 'low';
     case MEDIUM = 'medium';
     case HIGH = 'high';
+    case CRITICAL = 'critical';
 
     public function label(): string
     {
@@ -18,6 +19,7 @@ enum TicketPriority: string
             self::LOW => 'Low',
             self::MEDIUM => 'Medium',
             self::HIGH => 'High',
+            self::CRITICAL => 'Critical',
         };
     }
 }
