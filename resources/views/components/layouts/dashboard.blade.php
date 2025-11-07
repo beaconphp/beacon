@@ -15,9 +15,7 @@
             <flux:sidebar.spacer />
 
             <flux:sidebar.nav>
-                <flux:modal.trigger name="settings">
-                    <flux:sidebar.item icon="cog-6-tooth" icon:variant="solid" href="#">Settings</flux:sidebar.item>
-                </flux:modal.trigger>
+                <flux:sidebar.item icon="cog-6-tooth" icon:variant="solid" href="{{ route('dashboard.settings.workspace') }}" :current="request()->routeIs('dashboard.settings.*')">Settings</flux:sidebar.item>
             </flux:sidebar.nav>
         </flux:sidebar>
 
@@ -30,19 +28,7 @@
         </flux:header>
 
         <flux:main class="m-2 bg-zinc-50 dark:bg-zinc-900 border rounded-lg border-zinc-200 dark:border-zinc-700">
-            <flux:container>
-                {{ $slot }}
-
-                <flux:modal name="settings">
-                    <flux:heading size="lg" class="mb-6">Settings</flux:heading>
-
-                    <flux:radio.group x-data x-model="$flux.appearance" label="Select your theme" variant="segmented">
-                        <flux:radio value="light" label="Light" icon="sun"/>
-                        <flux:radio value="dark" label="Dark" icon="moon"/>
-                        <flux:radio value="system" label="System" icon="computer-desktop"/>
-                    </flux:radio.group>
-                </flux:modal>
-            </flux:container>
+            <flux:container>{{ $slot }}</flux:container>
         </flux:main>
     </x-slot:body>
 </x-layouts.base>
