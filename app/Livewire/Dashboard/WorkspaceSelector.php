@@ -43,7 +43,7 @@ final class WorkspaceSelector extends Component
             'current_workspace_id' => $value,
         ]);
 
-        $this->dispatch('refresh-ticket-list');
+        $this->dispatch('workspace-changed');
     }
 
     public function render(): View
