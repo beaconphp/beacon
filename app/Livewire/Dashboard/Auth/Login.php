@@ -16,11 +16,13 @@ final class Login extends Component
     #[Validate('required|string')]
     public string $password = '';
 
+    public bool $remember = false;
+
     public function authenticate(): void
     {
         $this->validate();
 
-        if (! auth()->attempt(['email' => $this->email, 'password' => $this->password])) {
+        if (! auth()->attempt(['email' => $this->email, 'password' => $this->password], $this->remember)) {
             $this->addError('email', '');
 
             return;
