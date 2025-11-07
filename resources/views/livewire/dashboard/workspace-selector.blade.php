@@ -1,4 +1,4 @@
-<flux:dropdown position="top" align="start" class="max-lg:hidden">
+<flux:dropdown position="top" align="start">
     <flux:sidebar.profile name="{{ $user->currentWorkspace?->name }}" class="cursor-pointer"/>
 
     <flux:menu>

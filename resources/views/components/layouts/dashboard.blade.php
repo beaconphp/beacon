@@ -9,12 +9,15 @@
 
             <flux:sidebar.nav>
                 <flux:sidebar.item icon="ticket" icon:variant="solid" badge:color="lime" href="{{ route('dashboard.tickets.index') }}" :current="request()->routeIs('dashboard.tickets.index')">Tickets</flux:sidebar.item>
+                <flux:sidebar.item icon="users" icon:variant="solid">Users</flux:sidebar.item>
             </flux:sidebar.nav>
 
             <flux:sidebar.spacer />
 
             <flux:sidebar.nav>
-                <flux:sidebar.item icon="cog-6-tooth" icon:variant="solid" href="#">Settings</flux:sidebar.item>
+                <flux:modal.trigger name="settings">
+                    <flux:sidebar.item icon="cog-6-tooth" icon:variant="solid" href="#">Settings</flux:sidebar.item>
+                </flux:modal.trigger>
             </flux:sidebar.nav>
         </flux:sidebar>
 
@@ -23,25 +26,22 @@
 
             <flux:spacer />
 
-            <flux:dropdown position="top" alignt="start">
-                <flux:profile avatar="https://fluxui.dev/img/demo/user.png" />
-
-                <flux:menu>
-                    <flux:menu.radio.group>
-                        <flux:menu.radio checked>Olivia Martin</flux:menu.radio>
-                        <flux:menu.radio>Truly Delta</flux:menu.radio>
-                    </flux:menu.radio.group>
-
-                    <flux:menu.separator />
-
-                    <flux:menu.item icon="arrow-right-start-on-rectangle">Logout</flux:menu.item>
-                </flux:menu>
-            </flux:dropdown>
+            <livewire:dashboard.workspace-selector/>
         </flux:header>
 
         <flux:main class="m-2 bg-zinc-50 dark:bg-zinc-900 border rounded-lg border-zinc-200 dark:border-zinc-700">
             <flux:container>
                 {{ $slot }}
+
+                <flux:modal name="settings">
+                    <flux:heading size="lg" class="mb-6">Settings</flux:heading>
+
+                    <flux:radio.group x-data x-model="$flux.appearance" label="Select your theme" variant="segmented">
+                        <flux:radio value="light" label="Light" icon="sun"/>
+                        <flux:radio value="dark" label="Dark" icon="moon"/>
+                        <flux:radio value="system" label="System" icon="computer-desktop"/>
+                    </flux:radio.group>
+                </flux:modal>
             </flux:container>
         </flux:main>
     </x-slot:body>
