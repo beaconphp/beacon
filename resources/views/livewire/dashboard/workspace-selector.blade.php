@@ -1,5 +1,5 @@
 <flux:dropdown position="top" align="start">
-    <flux:sidebar.profile name="{{ $user->currentWorkspace?->name }}" class="cursor-pointer"/>
+    <flux:sidebar.profile name="{{ $user->currentWorkspace?->name }}" :avatar="$user->currentWorkspace?->avatar_url" class="cursor-pointer"/>
 
     <flux:menu>
         <flux:menu.radio.group wire:model.live="workspace_id">
