@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Livewire\Dashboard\Workspace;
+namespace App\Livewire\Dashboard\Workspaces;
 
+use App\Enums\UserRole;
 use App\Models\Workspace;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -35,7 +36,7 @@ final class CreateWorkspace extends Component
             'author_id' => $user->id,
         ]);
 
-        $user->workspaces()->attach($workspace->id);
+        $user->workspaces()->attach($workspace->id, ['role' => UserRole::OWNER->value]);
 
         $user->update([
             'current_workspace_id' => $workspace->id,
