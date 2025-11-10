@@ -8,14 +8,14 @@
             </div>
 
             <flux:sidebar.nav>
-                <flux:sidebar.item icon="ticket" icon:variant="solid" badge:color="lime" href="{{ route('dashboard.tickets.index') }}" :current="request()->routeIs('dashboard.tickets.index')">Tickets</flux:sidebar.item>
-                <flux:sidebar.item icon="users" icon:variant="solid">Users</flux:sidebar.item>
+                <flux:sidebar.item icon="ticket" icon:variant="solid" badge:color="lime" :href="route('dashboard.tickets.index')" :current="request()->routeIs('dashboard.tickets.*')">Tickets</flux:sidebar.item>
+                <flux:sidebar.item icon="users" icon:variant="solid" :href="route('dashboard.users.index')" :current="request()->routeIs('dashboard.users.*')">Users</flux:sidebar.item>
             </flux:sidebar.nav>
 
             <flux:sidebar.spacer />
 
             <flux:sidebar.nav>
-                <flux:sidebar.item icon="cog-6-tooth" icon:variant="solid" href="{{ route('dashboard.settings.workspace') }}" :current="request()->routeIs('dashboard.settings.*')">Settings</flux:sidebar.item>
+                <flux:sidebar.item icon="cog-6-tooth" icon:variant="solid" :href="route('dashboard.settings.workspace')" :current="request()->routeIs('dashboard.settings.*')">Settings</flux:sidebar.item>
             </flux:sidebar.nav>
         </flux:sidebar>
 
