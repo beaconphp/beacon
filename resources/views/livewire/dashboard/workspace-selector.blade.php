@@ -4,7 +4,7 @@
     <flux:menu>
         <flux:menu.radio.group wire:model.live="workspace_id">
             @foreach($user->workspaces as $workspace)
-                <flux:menu.radio value="{{ $workspace->id }}">{{ $workspace->name }}</flux:menu.radio>
+                <flux:menu.radio value="{{ $workspace->id }}" class="cursor-pointer">{{ $workspace->name }}</flux:menu.radio>
             @endforeach
         </flux:menu.radio.group>
 

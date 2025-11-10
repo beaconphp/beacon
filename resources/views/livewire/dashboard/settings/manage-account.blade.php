@@ -4,7 +4,7 @@
             <flux:input type="password" label="Current password" wire:model.live.debounce350ms="current_password" placeholder="Enter current password" viewable/>
             <flux:input type="password" label="New password" wire:model.live.debounce350ms="password" placeholder="Enter new password" viewable/>
             <flux:input type="password" label="Confirm new password" wire:model.live.debounce350ms="password_confirmation" placeholder="Confirm new password" viewable/>
-            <flux:button variant="primary" type="submit">Update password</flux:button>
+            <flux:button variant="primary" type="submit" class="cursor-pointer">Update password</flux:button>
         </form>
         <flux:separator/>
         <div>

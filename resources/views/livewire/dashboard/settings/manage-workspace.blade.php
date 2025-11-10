@@ -31,7 +31,7 @@
                 </div>
             </div>
 
-            <flux:button variant="primary" type="submit">Save</flux:button>
+            <flux:button variant="primary" type="submit" class="cursor-pointer">Save changes</flux:button>
         </form>
 
         <flux:separator/>
@@ -41,7 +41,7 @@
             <flux:subheading class="mb-6">Delete this workspace and all of its resources</flux:subheading>
 
             <flux:modal.trigger name="delete-workspace">
-                <flux:button variant="danger">Delete workspace</flux:button>
+                <flux:button variant="danger" class="cursor-pointer">Delete workspace</flux:button>
             </flux:modal.trigger>
         </div>
     </div>
@@ -56,10 +56,10 @@
 
         <div class="flex justify-end space-x-2">
             <flux:modal.close>
-                <flux:button>Cancel</flux:button>
+                <flux:button class="cursor-pointer">Cancel</flux:button>
             </flux:modal.close>
 
-            <flux:button variant="danger" wire:click="delete">Confirm deletion</flux:button>
+            <flux:button variant="danger" wire:click="delete" class="cursor-pointer">Confirm deletion</flux:button>
         </div>
     </flux:modal>
 </x-dashboard.settings.template>
