@@ -47,7 +47,7 @@ final class CreateWorkspace extends Component
 
     public function render(): View
     {
-        return view('livewire.dashboard.workspace.create-workspace')
+        return view('livewire.dashboard.workspaces.create-workspace')
             ->layout('components.layouts.auth', ['title' => 'New workspace', 'logo' => false, 'heading' => 'New workspace']);
     }
 }
