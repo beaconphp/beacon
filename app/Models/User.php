@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Enums\UserRole;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -69,6 +70,20 @@ final class User extends Authenticatable
 
     public function canAccessDashboard(): bool
     {
-        return true;
+        if (! $this->currentWorkspace) {
+            return false;
+        }
+
+        $role = $this->currentWorkspace
+            ->users()
+            ->where('id', $this->id)
+            ->first()
+            ->membership
+            ->role;
+
+        return in_array($role, [
+            UserRole::OWNER->value,
+            UserRole::ADMIN->value,
+        ]);
     }
 }
