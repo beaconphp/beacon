@@ -5,8 +5,10 @@ declare(strict_types=1);
 use App\Http\Controllers\AuthenticatedSessionController;
 use App\Livewire\Dashboard\Settings\ManageAccount;
 use App\Livewire\Dashboard\Settings\ManageWorkspace;
-use App\Livewire\Dashboard\Ticket\ListTickets;
-use App\Livewire\Dashboard\Workspace\CreateWorkspace;
+use App\Livewire\Dashboard\Tickets\ListTickets;
+use App\Livewire\Dashboard\Users\CreateUser;
+use App\Livewire\Dashboard\Users\ListUsers;
+use App\Livewire\Dashboard\Workspaces\CreateWorkspace;
 use Illuminate\Support\Facades\Route;
 
 Route::domain('{workspace}.'.config('app.domain'))->group(function () {
@@ -19,6 +21,8 @@ Route::domain(config('app.domain'))->prefix('dashboard')->as('dashboard.')->grou
     Route::middleware(['auth.dashboard', 'can-access-dashboard'])->group(function () {
         Route::middleware('has-workspace')->group(function () {
             Route::get('/', ListTickets::class)->name('tickets.index');
+            Route::get('/users', ListUsers::class)->name('users.index');
+            Route::get('/user/new', CreateUser::class)->name('users.create');
             Route::get('/settings/workspace', ManageWorkspace::class)->name('settings.workspace');
             Route::get('/settings/account', ManageAccount::class)->name('settings.account');
         });
