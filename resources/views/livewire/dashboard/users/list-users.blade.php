@@ -26,5 +26,6 @@
     </div>
 
     <livewire:dashboard.users.create-user/>
+    <livewire:dashboard.users.edit-user/>
     <livewire:dashboard.users.invite-user/>
 </div>

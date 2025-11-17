@@ -30,5 +30,9 @@
         <flux:main class="m-2 bg-zinc-50 dark:bg-zinc-900 border rounded-lg border-zinc-200 dark:border-zinc-700">
             <flux:container>{{ $slot }}</flux:container>
         </flux:main>
+
+        @persist('toasts')
+            <livewire:toasts/>
+        @endpersist
     </x-slot:body>
 </x-layouts.base>

@@ -12,7 +12,7 @@
                 <flux:button icon="ellipsis-horizontal" size="xs" class="cursor-pointer"/>
 
                 <flux:menu>
-                    <flux:menu.item icon="pencil" class="cursor-pointer">Edit user</flux:menu.item>
+                    <flux:menu.item wire:click="edit({{ $user->id }})" icon="pencil" class="cursor-pointer">Edit user</flux:menu.item>
                     <flux:menu.item wire:click="remove({{ $user->id }})" variant="danger" icon="x-circle" class="cursor-pointer">Remove from workspace</flux:menu.item>
                     <flux:modal.trigger name="delete-user-{{ $user->id }}">
                         <flux:menu.item variant="danger" icon="trash" class="cursor-pointer">Delete user</flux:menu.item>
