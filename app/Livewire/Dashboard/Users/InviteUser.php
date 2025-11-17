@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Livewire\Dashboard\Users;
 
+use App\Facades\Toast;
 use App\Models\User;
 use Flux\Flux;
 use Illuminate\Database\Eloquent\Builder;
@@ -41,6 +42,8 @@ final class InviteUser extends Component
             if ($user->belongsToWorkspace($workspace)) {
                 continue;
             }
+
+            Toast::success("User {$user->name} was successfully added to this workspace.");
 
             $user->workspaces()->attach($workspace);
 
