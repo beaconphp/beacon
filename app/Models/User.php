@@ -68,6 +68,22 @@ final class User extends Authenticatable
         return $this->hasMany(Ticket::class, 'assigned_to');
     }
 
+    public function currentWorkspaceRole(): ?UserRole
+    {
+        if (! $this->currentWorkspace) {
+            return null;
+        }
+
+        $role = $this->currentWorkspace
+            ->users()
+            ->where('id', $this->id)
+            ->first()
+            ->membership
+            ->role;
+
+        return UserRole::tryFrom($role);
+    }
+
     public function canAccessDashboard(): bool
     {
         if (! $this->currentWorkspace) {
