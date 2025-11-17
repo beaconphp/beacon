@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Livewire\Dashboard\Settings;
 
+use App\Facades\Toast;
 use App\Models\Workspace;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
@@ -59,7 +60,9 @@ final class ManageWorkspace extends Component
             'avatar' => $avatar,
         ]);
 
-        $this->redirectRoute('dashboard.settings.workspace');
+        Toast::success('Workspace was updated successfully.');
+
+        $this->redirectRoute('dashboard.settings.workspace', navigate: true);
     }
 
     public function delete(): void

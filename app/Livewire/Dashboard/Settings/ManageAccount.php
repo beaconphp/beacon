@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Livewire\Dashboard\Settings;
 
+use App\Facades\Toast;
 use Illuminate\View\View;
 use Livewire\Component;
 
@@ -25,6 +26,8 @@ final class ManageAccount extends Component
         auth()->user()->update([
             'password' => $validated['password'],
         ]);
+
+        Toast::success('Password was changed successfully.');
 
         $this->reset('current_password', 'password', 'password_confirmation');
     }
