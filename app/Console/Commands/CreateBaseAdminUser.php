@@ -33,6 +33,7 @@ final class CreateBaseAdminUser extends Command
                 'name' => 'Admin',
                 'email' => 'admin@beacon.com',
                 'password' => bcrypt('admin'),
+                'is_global_admin' => true,
             ]);
     }
 }

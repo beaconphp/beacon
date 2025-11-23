@@ -26,6 +26,7 @@ final class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'is_global_admin' => 'boolean',
     ];
 
     /** @return BelongsToMany<Workspace, $this> */
@@ -86,6 +87,10 @@ final class User extends Authenticatable
 
     public function canAccessDashboard(): bool
     {
+        if ($this->is_global_admin) {
+            return true;
+        }
+
         if (! $this->currentWorkspace) {
             return false;
         }
