@@ -13,6 +13,7 @@
                         <flux:radio :label="$role->label()" :value="$role->value"/>
                     @endforeach
                 </flux:radio.group>
+                <flux:checkbox label="Send email with login information" wire:model="send_mail"/>
             </div>
 
             <div class="flex items-center gap-3">

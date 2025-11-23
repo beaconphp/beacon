@@ -26,6 +26,8 @@ final class CreateUser extends Component
 
     public string $role = UserRole::CLIENT->value;
 
+    public bool $send_mail = false;
+
     #[On('show-create-user-modal')]
     public function openModal(): void
     {
@@ -58,7 +60,9 @@ final class CreateUser extends Component
 
         $user->save();
 
-        Mail::to($this->email)->send(new UserCreatedInWorkspace($workspace, $this->email, $this->password));
+        if ($this->send_mail) {
+            Mail::to($this->email)->send(new UserCreatedInWorkspace($workspace, $this->email, $this->password));
+        }
 
         Toast::success("User {$user->name} was successfully created.");
 
