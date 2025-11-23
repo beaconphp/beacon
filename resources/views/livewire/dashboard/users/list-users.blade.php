@@ -23,7 +23,7 @@
                 <div class="text-zinc-400">You have no users in this workspace</div>
             </div>
         @endforelse
-        {{ $tickets->links('pagination.livewire') }}
+        {{ $users->links('pagination.livewire') }}
     </div>
 
     <livewire:dashboard.users.create-user/>
