@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Livewire\Workspace\Auth;
 
 use App\Livewire\Workspace\WorkspaceComponent;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 use Livewire\Attributes\Validate;
 
@@ -22,19 +24,21 @@ final class Login extends WorkspaceComponent
     {
         $this->validate();
 
-        if (! auth()->attempt(['email' => $this->email, 'password' => $this->password], $this->remember)) {
+        $user = User::query()->where('email', $this->email)->first();
+
+        if (! $user || ! Hash::check($this->password, $user->password)) {
             $this->addError('email', 'The email or password you entered is incorrect.');
 
             return;
         }
-
-        $user = current_user();
 
         if (! $user->belongsToWorkspace($this->currentWorkspace)) {
             $this->addError('email', 'This account does not belong to this workspace.');
 
             return;
         }
+
+        auth()->login($user, $this->remember);
 
         $this->redirectRoute('workspace.show', [
             'workspace' => $this->workspace,
