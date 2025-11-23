@@ -77,7 +77,8 @@
                             <flux:button icon="ellipsis-horizontal" size="xs" class="cursor-pointer"/>
 
                             <flux:menu>
-                                <flux:menu.item @click="edit = !edit" icon="pencil" class="cursor-pointer">Edit description</flux:menu.item>
+                                <flux:menu.item @click="edit = true; $nextTick(() => $refs.descriptionInput.focus())" icon="pencil" class="cursor-pointer" x-show="!edit">Edit description</flux:menu.item>
+                                <flux:menu.item @click="edit = false" icon="pencil" class="cursor-pointer" x-show="edit">Cancel editing</flux:menu.item>
                                 <flux:menu.item wire:click="deleteDescription" variant="danger" icon="trash" class="cursor-pointer">Delete description</flux:menu.item>
                             </flux:menu>
                         </flux:dropdown>
@@ -86,11 +87,11 @@
                 @if($ticket->description)
                     <flux:text size="lg" x-show="!edit">{!! html_entity_decode($ticket->description) !!}</flux:text>
                 @else
-                    <flux:button @click="edit = true" class="cursor-pointer" x-show="!edit">Add ticket description</flux:button>
+                    <flux:button @click="edit = true; $nextTick(() => $refs.descriptionInput.focus())" class="cursor-pointer" x-show="!edit">Add ticket description</flux:button>
                 @endif
 
                 <div class="space-y-3" x-show="edit">
-                    <flux:textarea rows="6" wire:model="description"/>
+                    <flux:textarea x-ref="descriptionInput" rows="6" wire:model="description"/>
                     <flux:button.group>
                         <flux:button wire:click="updateDescription" variant="primary" size="sm" class="cursor-pointer">Save</flux:button>
                         <flux:button @click="edit = false" size="sm" class="cursor-pointer">Cancel</flux:button>
