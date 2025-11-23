@@ -23,7 +23,7 @@ final class Login extends Component
         $this->validate();
 
         if (! auth()->attempt(['email' => $this->email, 'password' => $this->password], $this->remember)) {
-            $this->addError('email', '');
+            $this->addError('email', 'The email or password you entered is incorrect.');
 
             return;
         }
