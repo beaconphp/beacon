@@ -35,6 +35,8 @@ final class ViewTicket extends Component
         $this->fill($ticket);
 
         Flux::modal('view-ticket')->show();
+
+        $this->dispatch('hide-description-edit');
     }
 
     public function updatedStatus(string $value): void
