@@ -25,7 +25,7 @@ final class ViewTicket extends Component
 
     public null|int|string $assigned_to = null;
 
-    public string $description = '';
+    public ?string $description = '';
 
     #[On('show-view-ticket-modal')]
     public function setTicket(Ticket $ticket): void
