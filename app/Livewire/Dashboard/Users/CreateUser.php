@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace App\Livewire\Dashboard\Users;
 
 use App\Enums\UserRole;
+use App\Mail\UserCreatedInWorkspace;
 use App\Models\User;
 use Flux\Flux;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 use Livewire\Attributes\On;
@@ -54,6 +56,8 @@ final class CreateUser extends Component
         $user->workspaces()->attach($workspace, ['role' => $this->role]);
 
         $user->save();
+
+        Mail::to($this->email)->send(new UserCreatedInWorkspace($workspace, $this->email, $this->password));
 
         Flux::modal('create-user')->close();
 
