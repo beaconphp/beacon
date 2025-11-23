@@ -6,11 +6,13 @@
     <div class="flex items-center border-b border-zinc-200 dark:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800" ondblclick="@this.call('view', {{ $ticket->id }})">
         <div class="md:w-1/5 py-3 px-3 first:ps-0 last:pe-0 text-start text-sm font-medium text-zinc-800 dark:text-white">
             <div class="flex items-center gap-2">
-                <flux:avatar name="Testujeme Jméno" size="sm" circle/>
-                <div>
-                    <div class="mb-0.5">Testujeme jméno</div>
-                    <div class="text-zinc-400 text-xs font-normal">testujeme@jmeno.cz</div>
-                </div>
+                @if($ticket->requester)
+                    <flux:avatar :name="$ticket->requester->name" size="sm" circle/>
+                    <div>
+                        <div class="mb-0.5">{{ $ticket->requester->name }}</div>
+                        <div class="text-zinc-400 text-xs font-normal">{{ $ticket->requester->email }}</div>
+                    </div>
+                @endif
             </div>
         </div>
         <div class="md:w-1/3 py-3 px-3 first:ps-0 last:pe-0 text-start font-medium text-zinc-800 dark:text-white">
