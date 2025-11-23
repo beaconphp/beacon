@@ -24,7 +24,7 @@ final class WorkspaceSelector extends Component
     {
         $this->user = current_user();
         $this->workspace_id = $this->user->current_workspace_id;
-        $this->workspaces = $this->user->workspaces;
+        $this->workspaces = $this->user->adminWorkspaces;
     }
 
     public function updatedWorkspaceId(int $value): void
