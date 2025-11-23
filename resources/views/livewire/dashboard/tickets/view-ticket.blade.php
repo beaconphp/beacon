@@ -62,32 +62,40 @@
 
                             <flux:menu>
                                 @foreach(current_workspace()->users as $u)
-                                    <flux:menu.item wire:click="assignUser({{ $u->id }})" class="cursor-pointer">{{ $u->name }}</flux:menu.item>
+                                    <flux:menu.item wire:click="assignUser({{ $u->id }})" class="cursor-pointer" :icon="$ticket->assignee?->id === $u->id ? 'check' : ''" data-flux-menu-item-has-icon>{{ $u->name }}</flux:menu.item>
                                 @endforeach
                             </flux:menu>
                         </flux:dropdown>
                     </div>
                 </div>
             </div>
-            <div class="group">
+            <div class="group" x-data="{ edit: false }" @click.outside="edit = false" x-on:hide-description-edit.window="edit = false">
                 <div class="flex items-center mb-2">
                     <flux:label>Ticket description</flux:label>
                     @if($ticket->description)
                         <flux:dropdown class="ms-auto">
-                            <flux:button icon="ellipsis-horizontal" size="xs"/>
+                            <flux:button icon="ellipsis-horizontal" size="xs" class="cursor-pointer"/>
 
                             <flux:menu>
-                                <flux:menu.item icon="pencil">Edit description</flux:menu.item>
-                                <flux:menu.item wire:click="deleteDescription" variant="danger" icon="trash">Delete description</flux:menu.item>
+                                <flux:menu.item @click="edit = !edit" icon="pencil" class="cursor-pointer">Edit description</flux:menu.item>
+                                <flux:menu.item wire:click="deleteDescription" variant="danger" icon="trash" class="cursor-pointer">Delete description</flux:menu.item>
                             </flux:menu>
                         </flux:dropdown>
                     @endif
                 </div>
                 @if($ticket->description)
-                    <flux:text size="lg">{!! html_entity_decode($ticket->description) !!}</flux:text>
+                    <flux:text size="lg" x-show="!edit">{!! html_entity_decode($ticket->description) !!}</flux:text>
                 @else
-                    <flux:button>Add ticket description</flux:button>
+                    <flux:button @click="edit = true" class="cursor-pointer">Add ticket description</flux:button>
                 @endif
+
+                <div class="space-y-3" x-show="edit">
+                    <flux:textarea rows="6" wire:model="description"/>
+                    <flux:button.group>
+                        <flux:button wire:click="updateDescription" variant="primary" size="sm" class="cursor-pointer">Save</flux:button>
+                        <flux:button @click="edit = false" size="sm" class="cursor-pointer">Cancel</flux:button>
+                    </flux:button.group>
+                </div>
             </div>
         </div>
     @endif

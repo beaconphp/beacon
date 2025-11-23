@@ -25,6 +25,8 @@ final class ViewTicket extends Component
 
     public null|int|string $assigned_to = null;
 
+    public string $description = '';
+
     #[On('show-view-ticket-modal')]
     public function setTicket(Ticket $ticket): void
     {
@@ -70,6 +72,15 @@ final class ViewTicket extends Component
         $this->ticket->save();
 
         $this->dispatch('refresh-ticket-list');
+    }
+
+    public function updateDescription(): void
+    {
+        $this->ticket->update([
+            'description' => $this->description,
+        ]);
+
+        $this->dispatch('hide-description-edit');
     }
 
     public function deleteDescription(): void
