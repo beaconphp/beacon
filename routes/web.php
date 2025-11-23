@@ -11,8 +11,9 @@ use App\Livewire\Dashboard\Users\ListUsers;
 use App\Livewire\Dashboard\Workspaces\CreateWorkspace;
 use Illuminate\Support\Facades\Route;
 
-Route::domain('{workspace}.'.config('app.domain'))->group(function () {
-    Route::get('');
+Route::domain('{workspace:slug}.'.config('app.domain'))->middleware('set-workspace-context')->group(function () {
+    Route::view('/', 'workspace.show')->name('workspace.show');
+    Route::get('/login', App\Livewire\Workspace\Auth\Login::class)->name('login');
 });
 
 Route::domain(config('app.domain'))->group(function () {
