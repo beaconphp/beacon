@@ -42,7 +42,8 @@
             <flux:menu>
                 <flux:menu.radio.group wire:model.live.debounce250ms="assigned_to">
                     <flux:menu.radio value="anyone" class="cursor-pointer">Anyone</flux:menu.radio>
-                    @foreach(current_workspace()?->users as $u)
+                    <flux:menu.radio value="{{ auth()->id() }}" class="cursor-pointer">Myself</flux:menu.radio>
+                    @foreach(current_workspace()?->otherUsers as $u)
                         <flux:menu.radio value="{{ $u->id }}" class="cursor-pointer">{{ $u->name }}</flux:menu.radio>
                     @endforeach
                 </flux:menu.radio.group>

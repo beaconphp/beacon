@@ -25,6 +25,12 @@ final class Workspace extends Model
             ->as('membership');
     }
 
+    /** @return BelongsToMany<User, $this> */
+    public function otherUsers(): BelongsToMany
+    {
+        return $this->users()->except(current_user());
+    }
+
     protected function avatarUrl(): Attribute
     {
         return Attribute::make(
