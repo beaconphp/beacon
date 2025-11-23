@@ -25,7 +25,7 @@ final class TicketObserver
      */
     public function updated(Ticket $ticket): void
     {
-        if ($ticket->wasChanged('assignee_id') && $ticket->assignee?->email) {
+        if ($ticket->wasChanged('assigned_to') && $ticket->assignee?->email) {
             Mail::to($ticket->assignee->email)->send(new TicketAssigned($ticket));
         }
     }
