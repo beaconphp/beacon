@@ -1,7 +1,7 @@
 <div class="space-y-6">
     <div class="flex items-center justify-between">
         <flux:heading level="1" size="xl">Tickets</flux:heading>
-        <flux:button variant="primary" icon:leading="plus">New ticket</flux:button>
+        <flux:button @click="$dispatch('show-create-ticket-modal')" variant="primary" icon:leading="plus" class="cursor-pointer">New ticket</flux:button>
     </div>
     <div class="py-5 flex items-center space-x-3 border-y border-zinc-200 dark:border-zinc-700">
         <flux:dropdown>
@@ -67,4 +67,5 @@
     </div>
 
     <livewire:dashboard.tickets.view-ticket/>
+    <livewire:dashboard.tickets.create-ticket/>
 </div>
