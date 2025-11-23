@@ -66,6 +66,7 @@
                 <div class="text-zinc-400">You have no tickets in this workspace</div>
             </div>
         @endforelse
+        {{ $tickets->links('pagination.livewire') }}
     </div>
 
     <livewire:dashboard.tickets.view-ticket/>

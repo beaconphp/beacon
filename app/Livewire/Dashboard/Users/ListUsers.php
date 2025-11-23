@@ -12,9 +12,12 @@ use Illuminate\View\View;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 final class ListUsers extends Component
 {
+    use WithPagination;
+
     #[Url(as: 'q')]
     public string $search = '';
 

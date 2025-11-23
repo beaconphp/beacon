@@ -12,9 +12,12 @@ use Illuminate\Database\Eloquent\Builder;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 final class ListTickets extends Component
 {
+    use WithPagination;
+
     #[Url(except: 'all')]
     public string $status = 'all';
 
