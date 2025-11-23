@@ -30,7 +30,7 @@ final class Login extends WorkspaceComponent
 
         $user = current_user();
 
-        if (! $user->belongsToWorkspace($this->workspace)) {
+        if (! $user->belongsToWorkspace($this->currentWorkspace)) {
             $this->addError('email', 'This account does not belong to this workspace.');
 
             return;
