@@ -86,7 +86,7 @@
                 @if($ticket->description)
                     <flux:text size="lg" x-show="!edit">{!! html_entity_decode($ticket->description) !!}</flux:text>
                 @else
-                    <flux:button @click="edit = true" class="cursor-pointer">Add ticket description</flux:button>
+                    <flux:button @click="edit = true" class="cursor-pointer" x-show="!edit">Add ticket description</flux:button>
                 @endif
 
                 <div class="space-y-3" x-show="edit">
