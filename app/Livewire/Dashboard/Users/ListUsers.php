@@ -69,6 +69,8 @@ final class ListUsers extends Component
         }
 
         $user->delete();
+
+        Toast::success('User was successfully deleted.');
     }
 
     #[On('refresh-users-list')]
