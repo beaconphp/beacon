@@ -14,7 +14,7 @@
             <table align="center" border="0" cellpadding="0" cellspacing="0" style="color: #2a2627; font-size: 16px; width: 500px; margin: 0 auto;" width="500">
                 <tr>
                     <td style="padding: 35px 30px 20px; text-align: center">
-                        <x-logo color style="height: 30px"/>
+                        <img src="{{ $message->embed(public_path('assets/images/logo.png')) }}" alt="Logo" height="30">
                     </td>
                 </tr>
                 <tr>
