@@ -88,6 +88,10 @@ final class ViewTicket extends Component
         $this->ticket->update([
             'description' => null,
         ]);
+
+        $this->reset('description');
+
+        $this->dispatch('hide-description-edit');
     }
 
     public function render(): View
