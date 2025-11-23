@@ -55,7 +55,8 @@
             <div class="md:w-1/5 py-3 px-3 first:ps-0 last:pe-0 text-start text-sm font-medium text-zinc-800 dark:text-white">Requester</div>
             <div class="md:w-1/3 py-3 px-3 first:ps-0 last:pe-0 text-start text-sm font-medium text-zinc-800 dark:text-white">Subject</div>
             <div class="md:w-1/4 py-3 px-3 first:ps-0 last:pe-0 text-start text-sm font-medium text-zinc-800 dark:text-white">Status</div>
-            <div class="md:w-1/4 py-3 px-3 first:ps-0 last:pe-0 text-start text-sm font-medium text-zinc-800 dark:text-white">Created</div>
+            <div class="md:w-24 py-3 px-3 first:ps-0 last:pe-0 text-start text-sm font-medium text-zinc-800 dark:text-white">Assignee</div>
+            <div class="md:w-1/4 py-3 px-3 first:ps-0 last:pe-0 text-end text-sm font-medium text-zinc-800 dark:text-white">Created</div>
             <div class="md:w-10 py-3 px-3 first:ps-0 last:pe-0 text-end text-sm font-medium text-zinc-800 dark:text-white"></div>
         </div>
         @forelse($tickets as $ticket)

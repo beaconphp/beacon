@@ -33,7 +33,16 @@
         <div class="md:w-1/4 py-3 px-3 first:ps-0 last:pe-0 text-start text-sm font-medium text-zinc-800 dark:text-white">
             <flux:badge size="sm" :color="$ticket->status->color()">{{ $ticket->status->label() }}</flux:badge>
         </div>
-        <div class="md:w-1/4 py-3 px-3 first:ps-0 last:pe-0 text-start text-sm text-zinc-400">
+        <div class="md:w-24 py-3 px-3 first:ps-0 last:pe-0 text-start text-sm font-medium text-zinc-800 dark:text-white">
+            <div class="flex items-center gap-2">
+                @if($ticket->assignee)
+                    <flux:tooltip :content="$ticket->assignee->name">
+                        <flux:avatar :name="$ticket->assignee->name" size="sm" circle/>
+                    </flux:tooltip>
+                @endif
+            </div>
+        </div>
+        <div class="md:w-1/4 py-3 px-3 first:ps-0 last:pe-0 text-end text-sm text-zinc-400">
             {{ $ticket->created_at->diffForHumans() }}
         </div>
         <div class="md:w-10 py-3 px-3 first:ps-0 last:pe-0 text-end text-sm font-medium text-zinc-800 dark:text-white">
