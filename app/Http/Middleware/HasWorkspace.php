@@ -11,7 +11,7 @@ final class HasWorkspace
 {
     public function handle(Request $request, Closure $next): mixed
     {
-        if (! $request->user()->workspaces()->exists()) {
+        if (! $request->user()->adminWorkspaces()->exists()) {
             return to_route('dashboard.workspaces.create');
         }
 
