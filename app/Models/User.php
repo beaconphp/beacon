@@ -41,6 +41,15 @@ final class User extends Authenticatable
         return $this->hasMany(Workspace::class, 'author_id');
     }
 
+    /** @return BelongsToMany<Workspace, $this> */
+    public function adminWorkspaces(): BelongsToMany
+    {
+        return $this->workspaces()->wherePivotIn('role', [
+            UserRole::OWNER->value,
+            UserRole::ADMIN->value,
+        ]);
+    }
+
     /** @return BelongsTo<Workspace, $this> */
     public function currentWorkspace(): BelongsTo
     {
@@ -85,14 +94,10 @@ final class User extends Authenticatable
         return UserRole::tryFrom($role);
     }
 
-    public function canAccessDashboard(): bool
+    public function canAccessDashboard(?Workspace $workspace = null): bool
     {
-        if ($this->is_global_admin) {
-            return true;
-        }
-
         if (! $this->currentWorkspace) {
-            return false;
+            return true;
         }
 
         $role = $this->currentWorkspace
