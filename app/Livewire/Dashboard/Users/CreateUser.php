@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Livewire\Dashboard\Users;
 
 use App\Enums\UserRole;
+use App\Facades\Toast;
 use App\Mail\UserCreatedInWorkspace;
 use App\Models\User;
 use Flux\Flux;
@@ -58,6 +59,8 @@ final class CreateUser extends Component
         $user->save();
 
         Mail::to($this->email)->send(new UserCreatedInWorkspace($workspace, $this->email, $this->password));
+
+        Toast::success("User {$user->name} was successfully created.");
 
         Flux::modal('create-user')->close();
 
