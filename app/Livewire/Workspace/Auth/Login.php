@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Livewire\Workspace\Auth;
 
+use App\Livewire\Workspace\WorkspaceComponent;
 use Illuminate\View\View;
 use Livewire\Attributes\Validate;
-use Livewire\Component;
 
-final class Login extends Component
+final class Login extends WorkspaceComponent
 {
     #[Validate('required|string|email')]
     public string $email = '';
@@ -28,18 +28,16 @@ final class Login extends Component
             return;
         }
 
-        $workspace = request()->route('workspace');
-
         $user = current_user();
 
-        if (! $user->belongsToWorkspace($workspace)) {
+        if (! $user->belongsToWorkspace($this->workspace)) {
             $this->addError('email', 'This account does not belong to this workspace.');
 
             return;
         }
 
         $this->redirectRoute('workspace.show', [
-            'workspace' => $workspace,
+            'workspace' => $this->workspace,
         ]);
     }
 
