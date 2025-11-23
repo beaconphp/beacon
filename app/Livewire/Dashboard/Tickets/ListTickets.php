@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Livewire\Dashboard\Tickets;
 
+use App\Facades\Toast;
 use App\Models\Ticket;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -45,6 +46,8 @@ final class ListTickets extends Component
         }
 
         $ticket->delete();
+
+        Toast::success('Ticket was successfully deleted.');
     }
 
     #[On('refresh-ticket-list')]
