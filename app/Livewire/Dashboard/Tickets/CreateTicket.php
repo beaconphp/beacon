@@ -63,6 +63,7 @@ final class CreateTicket extends Component
             'subject' => $this->subject,
             'status' => $this->status,
             'priority' => $this->priority,
+            'requester_id' => auth()->id(),
             'assigned_to' => is_int($this->assigned_to) ? $this->assigned_to : null,
             'description' => $this->description,
             'workspace_id' => $workspace->id,
