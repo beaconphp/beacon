@@ -1,4 +1,4 @@
-<x-layouts.base title="Beacon">
+<x-layouts.base title="Enhance your customer support workflow with intelligent ticketing - Beacon">
     <x-slot:body class="bg-white text-zinc-900 font-sans antialiased overflow-x-hidden">
         <header class="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-zinc-100">
             <div class="max-w-7xl mx-auto px-6 lg:px-8">
