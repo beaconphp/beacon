@@ -94,7 +94,7 @@ final class User extends Authenticatable
         return UserRole::tryFrom($role);
     }
 
-    public function canAccessDashboard(?Workspace $workspace = null): bool
+    public function canAccessDashboard(): bool
     {
         if (! $this->currentWorkspace) {
             return true;
