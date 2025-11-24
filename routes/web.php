@@ -11,13 +11,15 @@ use App\Livewire\Dashboard\Users\ListUsers;
 use App\Livewire\Dashboard\Workspaces\CreateWorkspace;
 use Illuminate\Support\Facades\Route;
 
-Route::domain('{workspace:slug}.'.config('app.domain'))->middleware('set-workspace-context')->group(function () {
+$workspaceRoutes = function () {
     Route::view('/', 'workspace.show')->name('workspace.show');
     Route::get('/login', App\Livewire\Workspace\Auth\Login::class)->name('login');
-});
+};
+
+config('beacon.subdomain_workspaces', true) ? Route::domain('{workspace:slug}.'.config('app.domain'))->middleware('set-workspace-context')->group($workspaceRoutes) : Route::domain(config('app.domain'))->prefix('workspace/{workspace:slug}')->middleware('set-workspace-context')->group($workspaceRoutes);
 
 Route::domain(config('app.domain'))->group(function () {
-    Route::view('/', 'landing');
+    config('beacon.landing_page', true) ? Route::view('/', 'landing') : Route::redirect('/', '/dashboard');
 
     Route::prefix('dashboard')->as('dashboard.')->group(function () {
         Route::get('/login', App\Livewire\Dashboard\Auth\Login::class)->name('login');
