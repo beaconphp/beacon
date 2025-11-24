@@ -1,4 +1,11 @@
 <x-layouts.base :title="$title">
+    @push('styles')
+        @fluxAppearance
+    @endpush
+    @push('scripts')
+        @fluxScripts
+    @endpush
+
     <x-slot:body class="min-h-screen">
         <flux:sidebar sticky collapsible="mobile">
             <div>

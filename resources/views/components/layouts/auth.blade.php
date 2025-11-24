@@ -3,6 +3,13 @@
 	'logo' => true
 ])
 <x-layouts.base :title="$title">
+    @push('styles')
+        @fluxAppearance
+    @endpush
+    @push('scripts')
+        @fluxScripts
+    @endpush
+
     <x-slot:body>
         <div class="flex h-screen justify-center items-center">
             <div class="w-80 max-w-80 space-y-6">
