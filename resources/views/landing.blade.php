@@ -25,11 +25,11 @@
 
             <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
                 <div class="text-center max-w-4xl mx-auto">
-                    <div class="inline-flex items-center space-x-2 border border-zinc-200 rounded-full px-5 py-2 mb-8">
+                    <a href="https://github.com/beaconphp/beacon" target="_blank" class="inline-flex items-center space-x-2 border border-zinc-200 rounded-full px-5 py-2 mb-8 hover:bg-zinc-50 transition-colors">
                         <span class="w-2 h-2 bg-pink-500 rounded-full animate-pulse"></span>
                         <span class="text-sm font-semibold">Open Source & Self-Hosted</span>
-                        <img src="https://img.shields.io/github/stars/beaconphp/beacon" alt="">
-                    </div>
+                        <img src="https://img.shields.io/github/stars/beaconphp/beacon" alt="GitHub Stars">
+                    </a>
 
                     <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-semibold mb-6">
                         Perfect Support for
