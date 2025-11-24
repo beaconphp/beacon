@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Http\Middleware\CanAccessDashboardMiddleware;
 use App\Http\Middleware\DashboardAuthenticate;
 use App\Http\Middleware\HasWorkspace;
+use App\Http\Middleware\RedirectToDashboardIfAuthenticated;
 use App\Http\Middleware\SetWorkspaceContext;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -19,6 +20,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
             'auth.dashboard' => DashboardAuthenticate::class,
+            'guest.dashboard' => RedirectToDashboardIfAuthenticated::class,
             'can-access-dashboard' => CanAccessDashboardMiddleware::class,
             'has-workspace' => HasWorkspace::class,
             'set-workspace-context' => SetWorkspaceContext::class,

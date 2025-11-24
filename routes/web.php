@@ -22,7 +22,7 @@ Route::domain(config('app.domain'))->group(function () {
     config('beacon.landing_page', true) ? Route::view('/', 'landing')->name('landing') : Route::redirect('/', '/dashboard');
 
     Route::prefix('dashboard')->as('dashboard.')->group(function () {
-        Route::get('/login', App\Livewire\Dashboard\Auth\Login::class)->name('login');
+        Route::get('/login', App\Livewire\Dashboard\Auth\Login::class)->middleware('guest.dashboard')->name('login');
 
         Route::middleware(['auth.dashboard', 'can-access-dashboard'])->group(function () {
             Route::middleware('has-workspace')->group(function () {
