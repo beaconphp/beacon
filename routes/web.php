@@ -19,7 +19,7 @@ $workspaceRoutes = function () {
 config('beacon.subdomain_workspaces', true) ? Route::domain('{workspace:slug}.'.config('app.domain'))->middleware('set-workspace-context')->group($workspaceRoutes) : Route::domain(config('app.domain'))->prefix('workspace/{workspace:slug}')->middleware('set-workspace-context')->group($workspaceRoutes);
 
 Route::domain(config('app.domain'))->group(function () {
-    config('beacon.landing_page', true) ? Route::view('/', 'landing') : Route::redirect('/', '/dashboard');
+    config('beacon.landing_page', true) ? Route::view('/', 'landing')->name('landing') : Route::redirect('/', '/dashboard');
 
     Route::prefix('dashboard')->as('dashboard.')->group(function () {
         Route::get('/login', App\Livewire\Dashboard\Auth\Login::class)->name('login');
