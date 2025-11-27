@@ -6,6 +6,8 @@ namespace App\Livewire\Workspace\Tickets;
 
 use App\Models\Ticket;
 use App\Models\Workspace;
+use App\Notifications\NewTicketCreated;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\View\View;
 use Livewire\Attributes\Locked;
 use Livewire\Component;
@@ -35,7 +37,7 @@ final class CreateTicket extends Component
             'description' => ['nullable', 'string', 'min:3'],
         ]);
 
-        Ticket::query()->create([
+        $ticket = Ticket::query()->create([
             'subject' => $this->subject,
             'description' => $this->description,
             'workspace_id' => $this->workspace->id,
@@ -44,6 +46,8 @@ final class CreateTicket extends Component
             'requester_phone' => $this->phone,
             'requester_ip_address' => request()->ip(),
         ]);
+
+        Notification::send($this->workspace->admins, new NewTicketCreated($ticket));
 
         $this->reset('subject', 'name', 'email', 'phone', 'description');
     }
