@@ -12,6 +12,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 final class Workspace extends Model
 {
+    protected $casts = [
+        'is_guarded' => 'boolean',
+    ];
+
     /** @return BelongsTo<User, $this> */
     public function author(): BelongsTo
     {
