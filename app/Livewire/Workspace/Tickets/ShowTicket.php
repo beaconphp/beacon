@@ -14,9 +14,20 @@ final class ShowTicket extends WorkspaceComponent
     #[Locked]
     public Ticket $ticket;
 
+    public string $comment = '';
+
     public function mount(): void
     {
         abort_if($this->ticket->workspace_id !== $this->currentWorkspace->id, 404);
+    }
+
+    public function comment(): void
+    {
+        $this->validate([
+            'comment' => ['required', 'string'],
+        ]);
+
+        // todo: create comment model for ticket
     }
 
     public function render(): View
