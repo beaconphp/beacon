@@ -27,6 +27,8 @@ final class ManageWorkspace extends Component
 
     public ?TemporaryUploadedFile $avatar = null;
 
+    public bool $is_guarded = false;
+
     public string $delete_workspace_name = '';
 
     #[On('workspace-changed')]
@@ -37,6 +39,7 @@ final class ManageWorkspace extends Component
         $this->fill([
             'name' => $this->workspace->name,
             'slug' => $this->workspace->slug,
+            'is_guarded' => $this->workspace->is_guarded,
         ]);
     }
 
@@ -46,6 +49,7 @@ final class ManageWorkspace extends Component
             'name' => ['required', 'string', 'min:3', 'max:255'],
             'slug' => ['required', 'string', 'min:3', Rule::unique('workspaces', 'slug')->ignore($this->workspace)],
             'avatar' => ['nullable', 'image', 'max:1024'],
+            'is_guarded' => ['boolean'],
         ]);
 
         $avatar = $this->workspace->avatar;
@@ -58,6 +62,7 @@ final class ManageWorkspace extends Component
             'name' => $this->name,
             'slug' => $this->slug,
             'avatar' => $avatar,
+            'is_guarded' => $this->is_guarded,
         ]);
 
         Toast::success('Workspace was updated successfully.');

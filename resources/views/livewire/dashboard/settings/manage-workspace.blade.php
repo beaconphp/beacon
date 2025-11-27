@@ -31,6 +31,14 @@
                 </div>
             </div>
 
+            <flux:field variant="inline">
+                <flux:checkbox wire:model="is_guarded"/>
+
+                <flux:label>Restrict ticket submission to workspace members only</flux:label>
+
+                <flux:error name="is_guarded"/>
+            </flux:field>
+
             <flux:button variant="primary" type="submit" class="cursor-pointer">Save changes</flux:button>
         </form>
 
