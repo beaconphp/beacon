@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Livewire\Workspace\Tickets;
 
 use App\Models\Ticket;
+use App\Models\User;
 use App\Models\Workspace;
 use App\Notifications\NewTicketCreated;
 use Illuminate\Support\Facades\Notification;
@@ -26,6 +27,15 @@ final class CreateTicket extends Component
     public string $phone = '';
 
     public ?string $description = '';
+
+    public function mount(): void
+    {
+        $user = current_user();
+
+        if ($user instanceof User) {
+            $this->fill($user);
+        }
+    }
 
     public function save(): void
     {
@@ -50,6 +60,8 @@ final class CreateTicket extends Component
         Notification::send($this->workspace->admins, new NewTicketCreated($ticket));
 
         $this->reset('subject', 'name', 'email', 'phone', 'description');
+
+        $this->redirectRoute('workspace.ticket.show', ['workspace' => $this->workspace->slug, 'ticket' => $ticket]);
     }
 
     public function render(): View

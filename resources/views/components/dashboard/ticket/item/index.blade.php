@@ -3,7 +3,7 @@
 ])
 
 <div wire:key="ticket-item-{{ $ticket->id }}">
-    <div class="flex items-center border-b border-zinc-200 dark:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800" ondblclick="@this.call('view', {{ $ticket->id }})">
+    <div class="flex items-center border-b border-zinc-200 dark:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800" ondblclick="@this.call('view', '{{ $ticket->id }}')">
         <div class="md:w-1/5 py-3 px-3 first:ps-0 last:pe-0 text-start text-sm font-medium text-zinc-800 dark:text-white">
             <div class="flex items-center gap-2">
                 @if($ticket->requester)
@@ -56,7 +56,7 @@
                 <flux:button icon="ellipsis-horizontal" size="xs" class="cursor-pointer"/>
 
                 <flux:menu>
-                    <flux:menu.item wire:click="view({{ $ticket->id }})" icon="eye" class="cursor-pointer">View ticket</flux:menu.item>
+                    <flux:menu.item wire:click="view('{{ $ticket->id }}')" icon="eye" class="cursor-pointer">View ticket</flux:menu.item>
                     <flux:modal.trigger name="delete-ticket-{{ $ticket->id }}">
                         <flux:menu.item variant="danger" icon="trash" class="cursor-pointer">Delete ticket</flux:menu.item>
                     </flux:modal.trigger>
@@ -80,7 +80,7 @@
                     <flux:button variant="ghost" class="cursor-pointer">Cancel</flux:button>
                 </flux:modal.close>
 
-                <flux:button wire:click="delete({{ $ticket->id }})" variant="danger" class="cursor-pointer">Delete ticket</flux:button>
+                <flux:button wire:click="delete('{{ $ticket->id }}')" variant="danger" class="cursor-pointer">Delete ticket</flux:button>
             </div>
         </div>
     </flux:modal>

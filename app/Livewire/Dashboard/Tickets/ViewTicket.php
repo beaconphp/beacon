@@ -28,8 +28,14 @@ final class ViewTicket extends Component
     public ?string $description = '';
 
     #[On('show-view-ticket-modal')]
-    public function setTicket(Ticket $ticket): void
+    public function setTicket(string $uuid): void
     {
+        $ticket = Ticket::query()->find($uuid);
+
+        if (! $ticket) {
+            return;
+        }
+
         $this->ticket = $ticket;
 
         $this->fill($ticket);

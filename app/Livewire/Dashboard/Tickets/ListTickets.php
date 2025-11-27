@@ -29,7 +29,7 @@ final class ListTickets extends Component
 
     public ?Ticket $viewTicket = null;
 
-    public function view(int $id): void
+    public function view(string $id): void
     {
         $ticket = Ticket::query()->find($id);
 
@@ -37,10 +37,10 @@ final class ListTickets extends Component
             return;
         }
 
-        $this->dispatch('show-view-ticket-modal', ticket: $ticket);
+        $this->dispatch('show-view-ticket-modal', uuid: $ticket->id);
     }
 
-    public function delete(int $id): void
+    public function delete(string $id): void
     {
         $ticket = Ticket::query()->find($id);
 

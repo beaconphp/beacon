@@ -8,12 +8,15 @@ use App\Enums\TicketPriority;
 use App\Enums\TicketStatus;
 use App\Observers\TicketObserver;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 #[ObservedBy(TicketObserver::class)]
 final class Ticket extends Model
 {
+    use HasUuids;
+
     protected $casts = [
         'status' => TicketStatus::class,
         'priority' => TicketPriority::class,
