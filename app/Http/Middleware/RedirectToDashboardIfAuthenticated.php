@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 final class RedirectToDashboardIfAuthenticated extends RedirectIfAuthenticated
 {
-    protected function redirectTo(Request $request): ?string
+    protected function redirectTo(Request $request): string
     {
         return route('dashboard.tickets.index');
     }
