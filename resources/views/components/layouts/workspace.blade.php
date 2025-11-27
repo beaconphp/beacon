@@ -1,4 +1,8 @@
 <x-layouts.base :title="$currentWorkspace->name">
+    @push('scripts')
+        @fluxScripts
+    @endpush
+
     <x-slot:body>
         <flux:header container class="bg-zinc-50 dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-700">
             <flux:brand :name="$currentWorkspace->name" :href="route('workspace.show', ['workspace' => $currentWorkspace])"/>
