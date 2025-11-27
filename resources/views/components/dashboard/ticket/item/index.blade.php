@@ -12,6 +12,12 @@
                         <div class="mb-0.5">{{ $ticket->requester->name }}</div>
                         <div class="text-zinc-400 text-xs font-normal">{{ $ticket->requester->email }}</div>
                     </div>
+                @else
+                    <flux:avatar :name="$ticket->requester_name" size="sm" circle/>
+                    <div>
+                        <div class="mb-0.5">{{ $ticket->requester_name }}</div>
+                        <div class="text-zinc-400 text-xs font-normal">{{ $ticket->requester_email }}</div>
+                    </div>
                 @endif
             </div>
         </div>
