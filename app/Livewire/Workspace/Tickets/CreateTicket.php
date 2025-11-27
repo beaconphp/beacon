@@ -43,7 +43,7 @@ final class CreateTicket extends Component
             'subject' => ['required', 'string', 'min:3', 'max:255'],
             'name' => ['required', 'string', 'min:3', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
-            'phone' => ['required', 'string', 'min:9', 'max:15'],
+            'phone' => ['required', 'string', 'min:9', 'max:20'],
             'description' => ['nullable', 'string', 'min:3'],
         ]);
 
