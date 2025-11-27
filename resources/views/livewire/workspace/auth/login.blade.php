@@ -5,6 +5,6 @@
 
         <flux:checkbox wire:model.live.debounce350ms="remember" label="Remember me for 30 days"/>
 
-        <flux:button type="submit" variant="primary" class="w-full cursor-pointer">Log in</flux:button>
+        <flux:button type="submit" variant="primary" color="zinc" class="w-full cursor-pointer">Log in</flux:button>
     </form>
 </div>
