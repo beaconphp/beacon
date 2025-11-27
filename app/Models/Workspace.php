@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Enums\UserRole;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -23,6 +24,15 @@ final class Workspace extends Model
         return $this->belongsToMany(User::class)
             ->withPivot('role')
             ->as('membership');
+    }
+
+    /** @return BelongsToMany<User, $this> */
+    public function admins(): BelongsToMany
+    {
+        return $this->users()->wherePivotIn('role', [
+            UserRole::OWNER->value,
+            UserRole::ADMIN->value,
+        ]);
     }
 
     /** @return BelongsToMany<User, $this> */
