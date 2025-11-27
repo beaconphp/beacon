@@ -80,7 +80,7 @@ final class ManageWorkspace extends Component
         $this->workspace->delete();
 
         current_user()->update([
-            'current_workspace_id' => current_user()->workspaces->first()?->id,
+            'current_workspace_id' => current_user()->adminWorkspaces->first()?->id,
         ]);
 
         $this->redirectRoute('dashboard.tickets.index');
