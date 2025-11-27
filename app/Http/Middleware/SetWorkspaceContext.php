@@ -18,6 +18,10 @@ final class SetWorkspaceContext
 
         $workspace = Workspace::query()->where('slug', $workspaceSlug)->firstOrFail();
 
+        if ($workspace->is_guarded && ! $request->routeIs('login') && ! $request->user()?->belongsToWorkspace($workspace)) {
+            return to_route('login', ['workspace' => $workspaceSlug]);
+        }
+
         view()->share('currentWorkspace', $workspace);
 
         return $next($request);
