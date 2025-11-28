@@ -40,9 +40,9 @@ final class Login extends WorkspaceComponent
 
         auth()->login($user, $this->remember);
 
-        $this->redirectRoute('workspace.show', [
+        $this->redirectIntended(route('workspace.show', [
             'workspace' => $this->workspace,
-        ]);
+        ]));
     }
 
     public function render(): View

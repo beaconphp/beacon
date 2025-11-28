@@ -28,7 +28,7 @@ final class Login extends Component
             return;
         }
 
-        $this->redirectRoute('dashboard.tickets.index', navigate: true);
+        $this->redirectIntended(route('dashboard.tickets.index'), navigate: true);
     }
 
     public function render(): View
